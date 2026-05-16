@@ -13,6 +13,9 @@ const petRoutes = require('./routes/petRoutes');
 const adoptionRoutes = require('./routes/adoptionRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+app.get('/', (req, res) => {
+  res.send('Pet Adoption System API is running 🚀');
+});
 app.use('/api/pets', petRoutes);
 app.use('/api/adoptions', adoptionRoutes);
 app.use('/api/users', userRoutes);
