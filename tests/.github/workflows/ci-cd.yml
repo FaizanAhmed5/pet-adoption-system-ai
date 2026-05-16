@@ -1,0 +1,40 @@
+name: Node.js CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test-lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      # 🔍 LINT STAGE
+      - name: Run ESLint
+        run: npm run lint
+
+      # 🧪 TEST STAGE
+      - name: Run Tests
+        run: npm test
+
+      # 🏗 BUILD STAGE
+      - name: Build Project
+        run: echo "Build successful (no build step required for backend)"
