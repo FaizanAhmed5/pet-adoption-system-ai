@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   {
     files: ["**/*.js"],
     languageOptions: {
@@ -11,6 +11,8 @@ export default [
         process: "readonly",
         __dirname: "readonly",
         console: "readonly",
+
+        // Jest globals
         jest: "readonly",
         describe: "readonly",
         test: "readonly",
